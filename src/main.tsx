@@ -10,7 +10,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 );
 
 if ("wakeLock" in navigator) {
-  let wakeLock: WakeLock | null = null;
+  let wakeLock: WakeLockSentinel | null = null;
 
   (async() => {
     try {
