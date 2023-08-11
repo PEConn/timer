@@ -4,8 +4,38 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+
+  --text-color: rgba(255, 255, 255, 0.87);
+  --background-color: #202020;
+  --box-background-color: #242424;
+  --button-background-color: #1a1a1a;
+  --button-text-color: var(--text-color);
+
+  color: var(--text-color);
+  background-color: var(--background-color);
+
+  --box-width: 320px;
+  font-size: 1em;
+}
+
+@media (max-width: 500px) {
+  :root {
+    --box-width: 200px;
+    font-size: 0.8em;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #202020;
+    background-color: #ffffff;
+
+    --box-background-color: #dddddd;
+    --button-background-color: #404040;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
 }
 
 p {
@@ -22,47 +52,47 @@ body {
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2rem 0;
   text-align: center;
 }
 
 .timer {
-  background-color: #202020;
-  min-width: 320px;
+  background-color: var(--box-background-color);
+  min-width: var(--box-width);
   padding: 2em;
   margin: 2em;
 }
 
 .timer h1 {
   margin: 0px;
-  font-size: 2.5em
+  font-size: 250%;
 }
 
 .timer p {
   margin: 24px;
-  font-size: 3em;
+  font-size: 300%;
 }
 
 .timer button {
-  font-size: 1.5em;
+  font-size: 150%;
 }
 
 .stepList {
-  background-color: #202020;
-  min-width: 320px;
+  background-color: var(--box-background-color);
+  min-width: var(--box-width);
   padding: 2em;
   margin: 2em;
 }
 
 .stepList .title {
-  font-size: 1.5em;
+  font-size: 150%;
   margin-bottom: 1em;
   text-align: start;
 }
 
 .stepList button {
   margin-top: 24px;
-  font-size: 1.5em;
+  font-size: 150%;
 }
 
 .step {
@@ -70,7 +100,7 @@ body {
   display: flex;
   justify-content: space-between;
   max-width: 80%;
-  font-size: 1.5em;
+  font-size: 150%;
 }
 
 button {
@@ -80,7 +110,8 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--button-background-color);
+  color: var(--button-text-color);
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -90,14 +121,4 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }
