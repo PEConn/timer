@@ -8,8 +8,10 @@
   --text-color: rgba(255, 255, 255, 0.87);
   --background-color: #202020;
   --box-background-color: #242424;
+  --box-border: #121212;
   --button-background-color: #1a1a1a;
   --button-text-color: var(--text-color);
+  --button-border: var(--text-color);
 
   color: var(--text-color);
   background-color: var(--background-color);
@@ -31,7 +33,9 @@
     background-color: #ffffff;
 
     --box-background-color: #dddddd;
+    --box-border: #aaaaaa;
     --button-background-color: #404040;
+    --button-border: black;
   }
   button {
     background-color: #f9f9f9;
@@ -58,6 +62,7 @@ body {
 
 .timer {
   background-color: var(--box-background-color);
+  border: 2px solid var(--box-border);
   min-width: var(--box-width);
   padding: 2em;
   margin: 2em;
@@ -79,6 +84,7 @@ body {
 
 .stepList {
   background-color: var(--box-background-color);
+  border: 2px solid var(--box-border);
   min-width: var(--box-width);
   padding: 2em;
   margin: 2em;
@@ -105,7 +111,7 @@ body {
 
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: 1px solid var(--button-border);
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
