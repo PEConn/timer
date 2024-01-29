@@ -5,7 +5,7 @@ import { StepList } from './components/StepList';
 import { beep } from './utils';
 
 const steps = [
-  { title: "Change",  duration: 5 },
+  { title: "Change",  duration: 10 },
   { title: "Stretch", duration: 30, color: "#484848" },
 ]
 
