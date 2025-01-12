@@ -2,27 +2,46 @@ import { Step } from '../data/model'
 
 interface StepListProps {
     steps: Step[],
+    highlightStepIds: number[],
+    showRepeat: boolean,
     onReset: () => void,
 }
 
-export function StepList({steps, onReset}: StepListProps) {
-    // TODO: Don't use key = step.title here! Use ids!
+export function StepList({steps, onReset, highlightStepIds, showRepeat}: StepListProps) {
     return (<div className="stepList">
         <p className="title">Steps:</p>
-        {steps.map(step => <SingleStep step={step} key={step.title}/>)}
-        <div className="step">
-            <span className="stepTitle">Repeat</span><span className="stepDuration">...</span>
-        </div>
+        {steps.map(step => <StepItem
+            step={step}
+            highlighted={highlightStepIds.includes(step.id)}
+            key={step.id}/>)}
+
+        {showRepeat && <StepDiv name={"Repeat"} duration={"..."} highlighted={false}/> }
         <button onClick={onReset}>Reset</button>
     </div>)
 }
 
-interface StepProps {
+interface StepItemProps {
     step: Step,
+    highlighted: boolean
 }
 
-function SingleStep({step}: StepProps) {
-    return (<div className="step">
-        <span className="stepTitle">{step.title}</span><span className="stepDuration">{step.duration}s</span>
-    </div>)
+function StepItem({step, highlighted}: StepItemProps) {
+    const name = step.title;
+    const duration = step.duration + "s";
+    return (<StepDiv name={name} duration={duration} highlighted={highlighted}/>)
+}
+
+interface StepDivProps {
+    name: string,
+    duration: string
+    highlighted: boolean
+}
+
+function StepDiv({name, duration, highlighted}: StepDivProps) {
+    const className = highlighted ? "step step-selected" : "step";
+
+    return (<div className={className}>
+        <span className="stepTitle">{name}</span>
+        <span className="stepDuration">{duration}</span>
+    </div>);
 }

@@ -109,6 +109,10 @@ body {
   font-size: 150%;
 }
 
+.step-selected {
+  background-color: #484848;
+}
+
 button {
   border-radius: 8px;
   border: 1px solid var(--button-border);

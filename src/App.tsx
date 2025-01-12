@@ -3,11 +3,13 @@ import './App.css'
 import { Timer } from './components/Timer'
 import { StepList } from './components/StepList';
 import { beep } from './utils';
+import { CIRCUIT_STEPS, STRETCH_STEPS } from './data/model';
 
-const steps = [
-  { title: "Change",  duration: 10 },
-  { title: "Stretch", duration: 30, color: "#484848" },
-]
+function isCircuits() {
+  return window.location.href.includes("workout=circuits");
+}
+
+const steps = isCircuits() ? CIRCUIT_STEPS : STRETCH_STEPS;
 
 function App() {
   const [timerId, setTimerId] = useState(1);
@@ -31,6 +33,10 @@ function App() {
     setTimerId(timerId + 1);
   }
 
+  const stepsForStepList = steps.filter(step => step.title !== "Rest");
+  const showRepeat = !isCircuits();
+  const highlightStepIds = isCircuits() ? [step.id, step.id + 1] : [];
+
   return (
     <>
       <Timer
@@ -38,7 +44,9 @@ function App() {
         step={step}
         onFinish={onFinish} />
       <StepList
-        steps={steps}
+        steps={stepsForStepList}
+        highlightStepIds={highlightStepIds}
+        showRepeat={showRepeat}
         onReset={reset}/>
       <button onClick={() => {setSoundEnabled(!soundEnabled)}}>
         {soundEnabled && "Disable Sound"}
